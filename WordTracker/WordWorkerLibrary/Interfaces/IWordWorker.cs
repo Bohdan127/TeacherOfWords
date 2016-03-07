@@ -8,7 +8,7 @@ namespace WordWorkerLibrary.Interfaces
     {
         IRepository CurrentRepo { get; set; }
 
-        List<LinkedWord> GetAvailableList(string language, bool saveList);
+        List<LinkedWord> GetAvailableList(string language, bool saveList = false);
 
         LinkedWord GetNext(bool random);
 
@@ -18,10 +18,12 @@ namespace WordWorkerLibrary.Interfaces
 
         bool GetCashedRecords { get; set; }
 
-        bool AddWord(LinkedWord word, bool saveNow);
+        bool AddWord(LinkedWord word, bool saveNow = false);
 
-        bool AddRangeOfWords(LinkedWord[] words, bool saveNow);
+        bool AddRangeOfWords(LinkedWord[] words, bool saveNow = false);
 
         bool Save(bool user);
+
+        string[] GetLanguageList();
     }
 }

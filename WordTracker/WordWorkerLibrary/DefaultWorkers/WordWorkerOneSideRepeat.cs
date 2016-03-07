@@ -100,19 +100,40 @@ namespace WordWorkerLibrary.DefaultWorkers
             savedList.AddRange(repo.Select<LinkedWord>());
         }
 
-        public bool AddWord(LinkedWord word, bool saveNow)
+        public bool AddWord(LinkedWord word, bool saveNow = false)
         {
-            repo.Insert(word, saveNow);
-            if (getCashedRecords)
-                savedList.Add(word);
+            bool bRes = true;
+
+            try
+            {
+                repo.Insert(word, saveNow);
+                if (getCashedRecords)
+                    savedList.Add(word);
+            }
+            catch (Exception)
+            {
+                bRes = false;
+            }
+
+            return bRes;
         }
 
-        public bool AddRangeOfWords(LinkedWord[] words, bool saveNow)
+        public bool AddRangeOfWords(LinkedWord[] words, bool saveNow = false)
         {
             throw new NotImplementedException();
         }
 
         public bool Save(bool user)
+        {
+            bool bRes = true;
+
+            //todo
+            repo.Save();
+
+            return bRes;
+        }
+
+        public string[] GetLanguageList()
         {
             throw new NotImplementedException();
         }
