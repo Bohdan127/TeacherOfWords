@@ -1,7 +1,5 @@
 ﻿using DbManagerLibrary.DefaultManagers.Repositories;
 using DbManagerLibrary.Interfaces;
-using DbManagerLibrary.Tables;
-using System;
 using WordWorkerLibrary.Interfaces;
 
 namespace TestConsoleApp
@@ -20,8 +18,8 @@ namespace TestConsoleApp
 
             worker.CurrentRepo = localRepo;
 
-            worker.AddWord(new LinkedWord() { Language = "en", Word = "apple" });
-            worker.AddWord(new LinkedWord() { Language = "ua", Word = "яблуко" }, true);
+            //worker.AddWord(new LinkedWord() { Language = "en", Word = "apple" });
+            //worker.AddWord(new LinkedWord() { Language = "ua", Word = "яблуко" }, true);
 
             worker.GetAvailableList("en");
 

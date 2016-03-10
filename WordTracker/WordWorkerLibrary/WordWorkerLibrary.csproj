@@ -36,6 +36,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,9 +45,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DefaultAdders\WordAdderSimple.cs" />
+    <Compile Include="DefaultWorkers\WordWorkerOffline.cs" />
     <Compile Include="DefaultWorkers\WordWorkerOneSideRepeat.cs" />
     <Compile Include="DefaultWorkers\WordWorkerTwoSideRepeat.cs" />
+    <Compile Include="Interfaces\IWordAdder.cs" />
+    <Compile Include="Interfaces\IWordAdderOffline.cs" />
     <Compile Include="Interfaces\IWordWorker.cs" />
+    <Compile Include="Interfaces\IWordWorkerOffline.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

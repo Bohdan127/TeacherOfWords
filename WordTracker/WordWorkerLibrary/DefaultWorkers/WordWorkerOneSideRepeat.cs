@@ -14,6 +14,7 @@ namespace WordWorkerLibrary.DefaultWorkers
         private IRepository repo;
         private bool getCashedRecords;
         private bool needReCash;
+        private bool offline;
 
 
         public IRepository CurrentRepo
@@ -29,11 +30,11 @@ namespace WordWorkerLibrary.DefaultWorkers
                 log.Info("Repo type is " + repo.GetType().ToString());
 
                 //todo add more checking
-                //todo like checking for available DB or inthernet connection
+                //todo like checking for available DB or Internet connection
                 return repo;
             }
 
-
+            //todo add logs here
             set { repo = value; }
         }
 
@@ -52,6 +53,12 @@ namespace WordWorkerLibrary.DefaultWorkers
             }
         }
 
+        public bool WorksOffline
+        {//todo add logs here
+            get { return offline; }
+            set { offline = value; }
+        }
+
         public WordWorkerOneSideRepeat()
         {
             //todo restore here last words collection!!!
@@ -62,7 +69,7 @@ namespace WordWorkerLibrary.DefaultWorkers
 
 
         public List<LinkedWord> GetAvailableList(string language, bool saveList = false)
-        {
+        {//todo add logs here
             if (getCashedRecords)
             {
                 if (needReCash)
@@ -81,56 +88,23 @@ namespace WordWorkerLibrary.DefaultWorkers
         }
 
         public LinkedWord GetNext(bool random)
-        {
+        {//todo add logs here
             var resWord = new LinkedWord();
 
             return resWord;
         }
 
         public LinkedWord GetTranslate(LinkedWord word)
-        {
+        {//todo add logs here
             var resWord = new LinkedWord();
 
             return resWord;
         }
 
         public void CashAllWords()
-        {
+        {//todo add logs here
             savedList.Clear();
             savedList.AddRange(repo.Select<LinkedWord>());
-        }
-
-        public bool AddWord(LinkedWord word, bool saveNow = false)
-        {
-            bool bRes = true;
-
-            try
-            {
-                repo.Insert(word, saveNow);
-                if (getCashedRecords)
-                    savedList.Add(word);
-            }
-            catch (Exception)
-            {
-                bRes = false;
-            }
-
-            return bRes;
-        }
-
-        public bool AddRangeOfWords(LinkedWord[] words, bool saveNow = false)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool Save(bool user)
-        {
-            bool bRes = true;
-
-            //todo
-            repo.Save();
-
-            return bRes;
         }
 
         public string[] GetLanguageList()

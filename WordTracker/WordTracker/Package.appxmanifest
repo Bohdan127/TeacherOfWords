@@ -7,15 +7,15 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="b0f7ccee-72aa-4ae7-892e-a041cf930378"
-    Publisher="CN=Bohdan"
+    Name="f6dd332f-b819-49bf-a9a3-7f53e2bd0518"
+    Publisher="CN=Lenovo-PCv3"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="b0f7ccee-72aa-4ae7-892e-a041cf930378" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="f6dd332f-b819-49bf-a9a3-7f53e2bd0518" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>WordTracker</DisplayName>
-    <PublisherDisplayName>Bohdan</PublisherDisplayName>
+    <DisplayName>App1</DisplayName>
+    <PublisherDisplayName>Lenovo-PCv3</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
@@ -30,12 +30,12 @@
   <Applications>
     <Application Id="App"
       Executable="$targetnametoken$.exe"
-      EntryPoint="WordTracker.App">
+      EntryPoint="App1.App">
       <uap:VisualElements
-        DisplayName="WordTracker"
+        DisplayName="App1"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
-        Description="WordTracker"
+        Description="App1"
         BackgroundColor="transparent">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />

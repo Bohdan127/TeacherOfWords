@@ -5,7 +5,7 @@ using System.Data.Entity;
 
 namespace DbManagerLibrary.DefaultManagers.Repositories
 {
-    public abstract class Repository<TContext> : IRepository
+    public class Repository<TContext> : IRepository
       where TContext : DbContext, new()
     {//implementation of our repository for right using our context
         public Repository()
@@ -57,14 +57,8 @@ namespace DbManagerLibrary.DefaultManagers.Repositories
         /// <returns></returns>
         public int Save()
         {
-            try
-            {
-                return Context.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
+            //todo here can be a lot of exceptions maybe we should place here try/catch but with right behavior
+            return Context.SaveChanges();
         }
 
         /// <summary>

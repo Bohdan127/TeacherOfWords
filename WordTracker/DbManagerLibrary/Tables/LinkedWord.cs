@@ -16,5 +16,10 @@ namespace DbManagerLibrary.Tables
         [Required]
         [MaxLength(2)]
         public string Language { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("LinkedWord: Id - '{0}'; Word - '{1}'; ParId - '{2}'; Language - '{3}';", Id,Word,ParId,Language);
+        }
     }
 }
