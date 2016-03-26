@@ -6,65 +6,78 @@
     xmlns:local="using:TeacherOfWords"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:src ="using:TeacherOfWords.DataModel"
     mc:Ignorable="d">
 
     <Page.Resources>
-        <DataTemplate x:Key="Standard310x260ItemTemplate">
-            <Grid Height="250" Width="310" Margin="5,10,5,10">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Border Background="{ThemeResource ListViewItemPlaceholderBackgroundThemeBrush}" Height="150">
-                    <Image Source="{Binding ImagePath}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
-                </Border>
-                <StackPanel Grid.Row="1" Margin="0,10,0,0">
-                    <TextBlock Text="{Binding Title}" Style="{StaticResource TitleTextBlockStyle}" TextWrapping="NoWrap"/>
-                    <TextBlock Text="{Binding Description}" Style="{StaticResource BodyTextBlockStyle}" MaxHeight="60" />
-                </StackPanel>
-            </Grid>
+        <DataTemplate x:Key="StandardItemTemplate">
+                <Grid Height="510">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="500"/>
+                </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="5*" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Image Source="{Binding ImagePath}" Stretch="Fill" Width="420" Height="280"/>
+                <TextBlock Style="{StaticResource SubheaderTextBlockStyle}" Grid.Row="1" Margin="0,10,0,0" TextWrapping="Wrap"  
+                                   x:Uid="Section1Subtitle" Text="{Binding Title}"/>
+                <TextBlock Style="{StaticResource BodyTextBlockStyle}" Grid.Row="3" TextWrapping="Wrap"
+                                   x:Uid="Section1DescriptionText" Text="{Binding Description}"/>
+                </Grid>
         </DataTemplate>
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Hub>
+
+        <Grid.Resources>
+            <src:SampleDataItems x:Key="items" />
+        </Grid.Resources>
+        <!--<ListBox  Width="250" Margin="0,5,0,10"
+            ItemsSource="{StaticResource items}"
+      ItemTemplate="{StaticResource Standard310x260ItemTemplate}"
+ />-->
+
+        <Hub x:Name="MainHub">
             <Hub.Background>
-                <ImageBrush ImageSource="Assets/DarkGray.png" Stretch="UniformToFill"/>
+                <ImageBrush ImageSource="Assets/DarkGray.png" Stretch="UniformToFill" />
             </Hub.Background>
             <Hub.Header>
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="80"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="80" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                <Button  x:Name="backButton" 
+                    <Button  x:Name="backButton"
                          Style="{StaticResource NavigationBackButtonNormalStyle}"
-                        Margin="-1,-1,39,0" 
+                        Margin="-1,-1,39,0"
                         VerticalAlignment="Top"
                         Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
                         AutomationProperties.Name="Back"
                         AutomationProperties.AutomationId="BackButton"
-                        AutomationProperties.ItemType="Navigation Button"/>
-                    <TextBlock x:Name="pageTitle" Text="{StaticResource AppName}" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
+                        AutomationProperties.ItemType="Navigation Button" />
+                    <TextBlock x:Name="pageTitle" Text="{StaticResource AppName}" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1"
                         VerticalAlignment="Top" IsHitTestVisible="false" TextWrapping="NoWrap" />
                 </Grid>
             </Hub.Header>
-            <HubSection Width="580"/>
-            <HubSection Header="HubSection 1" 
-                        Width="780"
+            <HubSection Header="HubSection 1"
                         IsHeaderInteractive="True"
-                        DataContext="{Binding Section3Items}" 
+                        AutomationProperties.AutomationId="ItemGridView"
+                        AutomationProperties.Name="Items In Group"
+                         x:Uid="Section3Header"
                         Padding="40,40,40,32">
                 <DataTemplate>
                     <GridView
                        x:Name="itemGridView"
-                        ItemsSource="{Binding Items}"
-                        Margin="-9,-14,0,0"/>
-                    <!--ItemClick="ItemView_ItemClick">-->
-                    <!--</GridView>-->
+                       ItemsSource="{StaticResource items}"
+                        ItemTemplate="{StaticResource StandardItemTemplate}"
+                        IsItemClickEnabled="True"
+                        ItemClick="itemGridView_ItemClick" 
+                        Margin="0">
+                    </GridView>
                 </DataTemplate>
             </HubSection>
         </Hub>
-
     </Grid>
 </Page>
