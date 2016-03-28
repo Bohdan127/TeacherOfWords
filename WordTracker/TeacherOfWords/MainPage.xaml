@@ -32,7 +32,7 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
         <Grid.Resources>
-            <src:SampleDataItems x:Key="items" />
+            <src:ItemDescriptions x:Key="items" />
         </Grid.Resources>
         <!--<ListBox  Width="250" Margin="0,5,0,10"
             ItemsSource="{StaticResource items}"

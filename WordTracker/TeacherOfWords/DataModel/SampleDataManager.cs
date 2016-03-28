@@ -1,14 +1,20 @@
 ﻿using System.Collections.ObjectModel;
+using System.Threading.Tasks;
+using TeacherOfWords.Data.Tables;
 
 namespace TeacherOfWords.DataModel
 {
     public sealed class SampleDataManager
     {
-        public static ObservableCollection<SampleDataItem> GetDeaultItemList()
+        public async static Task<ObservableCollection<ItemDescription>> GetDeaultItemList()
         {
-            ObservableCollection<SampleDataItem> resGroup = new ObservableCollection<SampleDataItem>();
+            ObservableCollection<ItemDescription> resGroup = new ObservableCollection<ItemDescription>();
 
-            var item = new SampleDataItem()
+            //var connection = new SQLiteAsyncConnection(Application.Current.Resources["DbPath"] as string);
+
+            //var resList = await connection.GetAsync<ItemDescription>(item => item != null);
+
+            var item = new ItemDescription()
             {
                 UniqueId = 1,
                 Title = "Some First Title",
@@ -22,18 +28,22 @@ namespace TeacherOfWords.DataModel
             resGroup.Add(item);
             resGroup.Add(item);
 
+
+
+
             return resGroup;
         }
     }
 
-    public class SampleDataItems : ObservableCollection<SampleDataItem>
+    public class ItemDescriptions : ObservableCollection<ItemDescription>
     {
-        public SampleDataItems()
+        public ItemDescriptions()
         {
-            foreach (var item in SampleDataManager.GetDeaultItemList())
+            foreach (var item in SampleDataManager.GetDeaultItemList().Result)
             {
                 Add(item);
             }
         }
+
     }
 }

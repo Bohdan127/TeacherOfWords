@@ -21,9 +21,9 @@ namespace WordTracker_Windows_8_1.Data
     /// <summary>
     /// Generic item data model.
     /// </summary>
-    public class SampleDataItem
+    public class ItemDescription
     {
-        public SampleDataItem(String uniqueId, String title, String subtitle, String imagePath, String description, String content)
+        public ItemDescription(String uniqueId, String title, String subtitle, String imagePath, String description, String content)
         {
             this.UniqueId = uniqueId;
             this.Title = title;
@@ -58,7 +58,7 @@ namespace WordTracker_Windows_8_1.Data
             this.Subtitle = subtitle;
             this.Description = description;
             this.ImagePath = imagePath;
-            this.Items = new ObservableCollection<SampleDataItem>();
+            this.Items = new ObservableCollection<ItemDescription>();
         }
 
         public string UniqueId { get; private set; }
@@ -66,7 +66,7 @@ namespace WordTracker_Windows_8_1.Data
         public string Subtitle { get; private set; }
         public string Description { get; private set; }
         public string ImagePath { get; private set; }
-        public ObservableCollection<SampleDataItem> Items { get; private set; }
+        public ObservableCollection<ItemDescription> Items { get; private set; }
 
         public override string ToString()
         {
@@ -106,7 +106,7 @@ namespace WordTracker_Windows_8_1.Data
             return null;
         }
 
-        public static async Task<SampleDataItem> GetItemAsync(string uniqueId)
+        public static async Task<ItemDescription> GetItemAsync(string uniqueId)
         {
             await _sampleDataSource.GetSampleDataAsync();
             // Simple linear search is acceptable for small data sets
@@ -139,7 +139,7 @@ namespace WordTracker_Windows_8_1.Data
                 foreach (JsonValue itemValue in groupObject["Items"].GetArray())
                 {
                     JsonObject itemObject = itemValue.GetObject();
-                    group.Items.Add(new SampleDataItem(itemObject["UniqueId"].GetString(),
+                    group.Items.Add(new ItemDescription(itemObject["UniqueId"].GetString(),
                                                        itemObject["Title"].GetString(),
                                                        itemObject["Subtitle"].GetString(),
                                                        itemObject["ImagePath"].GetString(),

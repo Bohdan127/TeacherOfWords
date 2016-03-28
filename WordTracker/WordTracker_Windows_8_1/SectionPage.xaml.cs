@@ -83,7 +83,7 @@ namespace WordTracker_Windows_8_1
         {
             // Navigate to the appropriate destination page, configuring the new page
             // by passing required information as a navigation parameter
-            var itemId = ((SampleDataItem)e.ClickedItem).UniqueId;
+            var itemId = ((ItemDescription)e.ClickedItem).UniqueId;
             this.Frame.Navigate(typeof(ItemPage), itemId);
         }
 

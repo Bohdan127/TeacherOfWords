@@ -105,20 +105,25 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <Folder Include="Common\" />
+    <Folder Include="Modules\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DataModel\SampleDataItem.cs" />
     <Compile Include="DataModel\SampleDataManager.cs" />
+    <Compile Include="Data\IRepository.cs" />
+    <Compile Include="Data\Repository.cs" />
+    <Compile Include="Data\RepositoryManager.cs" />
+    <Compile Include="Data\Tables\ItemDescription.cs" />
+    <Compile Include="Data\Tables\LinkedWord.cs" />
+    <Compile Include="Data\Tables\Version.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SQLite.cs" />
-    <Compile Include="SQLiteAsync.cs" />
+    <Compile Include="SQLite\SQLite.cs" />
+    <Compile Include="SQLite\SQLiteAsync.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -145,18 +150,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="SQLite-net, Version=1.0.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\sqlite-net-pcl.1.0.11\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\SQLite-net.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="SQLitePCL.raw, Version=0.7.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SQLitePCL.raw_basic.0.7.1\lib\netcore451\SQLitePCL.raw.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="SQLiteReposotry.WinRT, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SQLiteReposotry.WinRT.1.0.0.0\lib\portable-net45+win+wpa81\SQLiteReposotry.WinRT.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
+    <SDKReference Include="Microsoft.VCLibs, version=12.0">
+      <Name>Microsoft Visual C++ 2013 Runtime Package for Windows</Name>
+    </SDKReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
