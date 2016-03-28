@@ -44,7 +44,7 @@ namespace TeacherOfWords
             //cause of large time influence
             var repoManager = new RepositoryManager();
             repoManager.CreateAllTables();
-
+            repoManager.RegisterAllModules();
 
             Frame rootFrame = Window.Current.Content as Frame;
 

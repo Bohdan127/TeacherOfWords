@@ -1,6 +1,8 @@
-﻿using System.Collections.ObjectModel;
+﻿using SQLite;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using TeacherOfWords.Data.Tables;
+using Windows.UI.Xaml;
 
 namespace TeacherOfWords.DataModel
 {
@@ -8,28 +10,19 @@ namespace TeacherOfWords.DataModel
     {
         public async static Task<ObservableCollection<ItemDescription>> GetDeaultItemList()
         {
-            ObservableCollection<ItemDescription> resGroup = new ObservableCollection<ItemDescription>();
+            ObservableCollection<ItemDescription> resGroup =
+                new ObservableCollection<ItemDescription>();
 
-            //var connection = new SQLiteAsyncConnection(Application.Current.Resources["DbPath"] as string);
+            var connection = new SQLiteAsyncConnection(
+                Application.Current.Resources["DbPath"] as string);
 
-            //var resList = await connection.GetAsync<ItemDescription>(item => item != null);
+            var itemList = connection.Table<ItemDescription>()
+                .Where(item => item.UniqueId != -1).ToListAsync().Result;
 
-            var item = new ItemDescription()
+            foreach (var item in itemList)
             {
-                UniqueId = 1,
-                Title = "Some First Title",
-                Description = "New DescriptionNew DescriptionNew DescriptionNew DescriptionNew DescriptionNew DescriptionNew DescriptionNew DescriptionNew DescriptionNew DescriptionNew DescriptionNew Description",
-                ImagePath = "Assets/SplashScreen.scale-100.png"
-            };
-
-            resGroup.Add(item);
-            resGroup.Add(item);
-            resGroup.Add(item);
-            resGroup.Add(item);
-            resGroup.Add(item);
-
-
-
+                resGroup.Add(item);
+            }
 
             return resGroup;
         }
