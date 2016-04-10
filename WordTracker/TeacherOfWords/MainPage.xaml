@@ -10,8 +10,8 @@
     mc:Ignorable="d">
 
     <Page.Resources>
-        <DataTemplate x:Key="StandardItemTemplate">
-                <Grid Height="510">
+        <DataTemplate x:Key="StandardItemTemplate">   
+                <Grid Height="510" Margin="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="500"/>
                 </Grid.ColumnDefinitions>
@@ -65,7 +65,7 @@
                         IsHeaderInteractive="True"
                         AutomationProperties.AutomationId="ItemGridView"
                         AutomationProperties.Name="Items In Group"
-                         x:Uid="Section3Header"
+                         x:Uid="Section1Main"
                         Padding="40,40,40,32">
                 <DataTemplate>
                     <GridView

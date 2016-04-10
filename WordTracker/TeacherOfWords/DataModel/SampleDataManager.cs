@@ -1,6 +1,5 @@
 ﻿using SQLite;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 using TeacherOfWords.Data.Tables;
 using Windows.UI.Xaml;
 
@@ -8,7 +7,8 @@ namespace TeacherOfWords.DataModel
 {
     public sealed class SampleDataManager
     {
-        public async static Task<ObservableCollection<ItemDescription>> GetDeaultItemList()
+        //todo try to make it async !!! and use it
+        public static ObservableCollection<ItemDescription> GetDeaultItemList()
         {
             ObservableCollection<ItemDescription> resGroup =
                 new ObservableCollection<ItemDescription>();
@@ -32,7 +32,7 @@ namespace TeacherOfWords.DataModel
     {
         public ItemDescriptions()
         {
-            foreach (var item in SampleDataManager.GetDeaultItemList().Result)
+            foreach (var item in SampleDataManager.GetDeaultItemList())
             {
                 Add(item);
             }

@@ -1,5 +1,6 @@
 ﻿using System;
 using TeacherOfWords.Data;
+using TeacherOfWords.Modules;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
